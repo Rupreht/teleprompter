@@ -49,11 +49,11 @@
     <meta name="dc:description" content="Browser-based TelePrompter with Remote Control">
 
     <!-- Manifest -->
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- Icons -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="192x192" href="assets/img/apple/icon-192x192.png" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/assets/img/apple/icon-192x192.png" />
 
     <!-- Canonical -->
     <link rel="canonical" href="" />
@@ -61,15 +61,15 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.min.css" />
-    <link rel="stylesheet" href="assets/css/style.v120.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.v120.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
 
     <!-- DNS Pre-Connects -->
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link rel="preconnect" href="https://code.jquery.com/" crossorigin />
 
     <!-- Preload Assets -->
-    <link rel="preload" href="assets/font/fontawesome-webfont.woff?v=3.2.1" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/font/fontawesome-webfont.woff?v=3.2.1" as="font" type="font/woff2" crossorigin>
   </head>
 
   <body id="gui">
@@ -171,14 +171,14 @@
         js = d.createElement(s);
         js.id = id;
         js.src = (window.location.hostname === '127.0.0.1') ?
-			'http://127.0.0.1:3000/socket.io/socket.io.js' :
-			window.location.protocol  + '//' + window.location.hostname + '/remote/socket.io/socket.io.js';
+          'http://127.0.0.1:3000/socket.io/socket.io.js' :
+          window.location.protocol  + '//' + window.location.hostname + '/remote/socket.io/socket.io.js';
         tjs.parentNode.insertBefore(js, tjs);
       }(document, 'script', 'teleprompter-socket'));
     </script>
 
-    <script src="assets/js/plugins.v120.js"></script>
-    <script src="assets/js/script.v120.js"></script>
+    <script src="/assets/js/plugins.v120.js"></script>
+    <script src="/assets/js/script.v120.js"></script>
 
     <script>
       // Load Service Worker for PWA

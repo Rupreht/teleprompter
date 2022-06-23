@@ -20,8 +20,8 @@
 
     <link rel="preload" href="/assets/font/fontawesome-webfont.woff?v=3.2.1" as="font" type="font/woff2" crossorigin>
 
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="192x192" href="assets/img/apple/icon-192x192.png" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/assets/img/apple/icon-192x192.png" />
   </head>
   <body>
     <div id="remote-setup" class="remote-wrapper">
@@ -87,7 +87,7 @@
         js.id = id;
         js.src = (window.location.hostname === '127.0.0.1') ?
           'http://127.0.0.1:3000/socket.io/socket.io.js' :
-	  window.location.protocol + '//' + window.location.hostname + '/remote/socket.io/socket.io.js';
+          window.location.protocol + '//' + window.location.hostname + '/remote/socket.io/socket.io.js';
         tjs.parentNode.insertBefore(js, tjs);
       }(document, 'script', 'teleprompter-socket'));
 
