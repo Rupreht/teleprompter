@@ -1003,13 +1003,9 @@ var TelePrompter = (function() {
       return;
     }
 
-    socket = (window.location.hostname === 'promptr.tv') ?
-      io.connect('https://promptr.tv', {
-        path: '/remote/socket.io'
-      }) :
-      io.connect('http://' + window.location.hostname + ':3000', {
-        path: '/socket.io'
-      });
+    socket = (window.location.hostname === '127.0.0.1') ?
+      io.connect('http://127.0.0.1:3000', { path: '/socket.io' }) :
+      io.connect(window.location.protocol + '//' + window.location.hostname, { path: '/remote/socket.io' });
 
     remote = (currentRemote) ? currentRemote : randomString();
 
@@ -1018,11 +1014,13 @@ var TelePrompter = (function() {
       $code.innerHTML = '';
       socket.emit('connectToRemote', 'REMOTE_' + remote);
 
-      $elm.remoteURL.text((window.location.hostname === 'promptr.tv') ? 'https://promptr.tv/remote' : 'http://' + window.location.hostname + ':3000');
+      $elm.remoteURL.text((window.location.hostname === '127.0.0.1') ?
+	      'http://127.0.0.1:3000' :
+	      window.location.protocol + '//' + window.location.hostname + '/remote');
 
-      var url = (window.location.hostname === 'promptr.tv') ?
-        'https://promptr.tv/remote?id=' + remote :
-        'http://' + window.location.hostname + ':3000/?id=' + remote;
+      var url = (window.location.hostname === '127.0.0.1') ?
+        'http://127.0.0.1:3000/?id=' + remote :
+        window.location.protocol + '//' + window.location.hostname + '/remote?id=' + remote;
 
       new QRCode($code, url);
       $elm.remoteID.text(remote);

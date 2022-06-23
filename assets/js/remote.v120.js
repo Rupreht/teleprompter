@@ -243,9 +243,9 @@
    * @param {String} remote Remote ID
    */
   function clientConnect(remote) {
-    socket = (window.location.hostname === 'promptr.tv')
-      ? io.connect('https://promptr.tv', { path: '/remote/socket.io' })
-      : io.connect('http://' + window.location.hostname + ':3000', { path: '/socket.io' });
+    socket = (window.location.hostname === '127.0.0.1')
+      ? io.connect('http://' + window.location.hostname + ':3000', { path: '/socket.io' })
+      : io.connect(window.location.protocol + '//' + window.location.hostname, { path: '/remote/socket.io' });
 
 
     socket.on('connect', function() {

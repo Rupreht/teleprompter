@@ -35,4 +35,4 @@ io.on('connection', function(socket) {
   });
 });
 
-http.listen(3000, function() {});
+http.listen(3000, '127.0.0.1', function() {});
