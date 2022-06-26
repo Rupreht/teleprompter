@@ -244,7 +244,7 @@
    */
   function clientConnect(remote) {
     socket = (window.location.hostname === '127.0.0.1')
-      ? io.connect('http://' + window.location.hostname + ':3000', { path: '/socket.io' })
+      ? io.connect('http://127.0.0.1:3000', { path: '/socket.io' })
       : io.connect(window.location.protocol + '//' + window.location.hostname, { path: '/remote/socket.io' });
 
 

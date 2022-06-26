@@ -114,7 +114,7 @@ var TelePrompter = (function() {
       // Open Software Update Modal
       $elm.modal.css('display', 'flex');
       $elm.remoteControlModal.hide();
-      $elm.softwareUpdate.show();
+      // $elm.softwareUpdate.show();
 
       modalOpen = true;
 
@@ -549,7 +549,7 @@ var TelePrompter = (function() {
 
     $elm.modal.hide();
     $elm.remoteControlModal.hide();
-    $elm.softwareUpdate.hide();
+    // $elm.softwareUpdate.hide();
 
     modalOpen = false;
   }
@@ -774,7 +774,7 @@ var TelePrompter = (function() {
     } else {
       $elm.modal.css('display', 'flex');
       $elm.remoteControlModal.show();
-      $elm.softwareUpdate.hide();
+      // $elm.softwareUpdate.hide();
     }
 
     $elm.buttonRemote.blur();
