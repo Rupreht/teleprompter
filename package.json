@@ -26,17 +26,17 @@
     "url": "https://github.com/manifestinteractive/teleprompter/issues"
   },
   "scripts": {
-    "start": "forever start -w --minUptime 1000 --spinSleepTime 1000 -m 1 -l server.log --append -o ./server-stdout.log -e ./server-stderr.log server.js",
-    "stop": "forever stop -w --minUptime 1000 --spinSleepTime 1000 -m 1 -l server.log --append -o ./server-stdout.log -e ./server-stderr.log server.js",
+    "start": "pm2 start -w --name teleprompter --watch --log server.log -o ./server-stdout.log -e ./server-stderr.log server.js",
+    "stop": "pm2 stop teleprompter",
     "client": "http-server --cors -p 8080 -o",
     "server": "node server.js"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "forever": "^4.0.0",
+    "pm2": "^5.1.2",
     "socket.io": "^4.1.2"
   },
   "devDependencies": {
-    "http-server": "^0.12.3"
+    "http-server": "^13.0.0"
   }
 }
