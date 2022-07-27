@@ -1,11 +1,11 @@
-TelePrompter
-===
+# TelePrompter
 
 > Browser-based TelePrompter with Remote Control
 
 ![Screenshot](assets/img/social-card.png "Screenshot")
 
-Features
+## Features
+
 ---
 
 - [X] Edit Text in Browser
@@ -14,14 +14,16 @@ Features
 - [X] Advanced Controls
 - [X] Remote Control Support
 
-Free to Use
+## Free to Use
+
 ---
 
 Our Open Source TelePrompter is Available Online:
 
 [![Launch](https://img.shields.io/badge/Launch_TelePrompter-blue.svg?logo=azure-data-explorer&style=for-the-badge&logoColor=white)](https://promptr.tv)
 
-Keyboard Shortcuts
+## Keyboard Shortcuts
+
 ---
 
 Key              | Alternatives                            | Description
@@ -35,11 +37,12 @@ Key              | Alternatives                            | Description
 
 We also made an effort to make sure your text will be easy to read.   So if you are pasting text from a word document, we'll do some cleaning up to make the breaks flow more easily.
 
-Get Updates
+## Get Updates
+
 ---
 
 Follow this project on GitHub, or you can follow me on Twitter for updates: **[@mrmidi](http://twitter.com/mrmidi "Follow @mrmidi on Twitter")**
 
-#### Do you use this TelePrompter?
+## Do you use this TelePrompter?
 
-[![Buy Me Coffee](https://peterschmalfeldt.com/buy-me-coffee.png)](https://www.paypal.me/manifestinteractive)
+[![Buy Me Coffee](https://www.paypalobjects.com/digitalassets/c/consumer/paypalme/networkidentity/pp_logo_small.png)](https://www.paypal.me/manifestinteractive)

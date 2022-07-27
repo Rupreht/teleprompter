@@ -29,6 +29,7 @@
   /* Default App Settings */
   var defaultConfig = {
 	  backgroundColor: '#141414',
+    hyphensControls: true,
     dimControls: true,
     flipX: false,
     flipY: false,
@@ -60,6 +61,7 @@
     }
 
     $elm.control = document.getElementById('remote-control');
+    $elm.hyphens = document.getElementById('button-hyphens');
     $elm.dim = document.getElementById('button-dim');
     $elm.down = document.getElementById('button-down');
     $elm.faster = document.getElementById('button-faster');
@@ -78,6 +80,18 @@
     document.addEventListener('focusout', function(e) {
       if (!socket && !remote) {
         handleInput();
+      }
+    });
+
+    /* Dim Button */
+    $elm.hyphens.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      config.hyphensControls = !config.hyphensControls;
+      updateUI('hyphens');
+
+      if (socket && remote) {
+        socket.emit('sendRemoteControl', 'updateConfig', config);
       }
     });
 
@@ -495,6 +509,15 @@
    */
   function updateUI(controller) {
     clearTimeout(timeout);
+
+    // Update Hyphens Control
+    if (!controller || controller === 'hyphens') {
+      if (config.hyphensControls) {
+        $elm.hyphens.classList.add('active');
+      } else {
+        $elm.hyphens.classList.remove('active');
+      }
+    }
 
     // Update Dim Control
     if (!controller || controller === 'dim') {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="utf-8">
     <title>Teleprompter Remote</title>
@@ -37,6 +37,7 @@
 
     <div id="remote-control" class="remote-wrapper">
       <div class="header">
+        <button class="button small icon-align-justify hyphens-controls" id="button-hyphens" aria-label="Text Align" title="Text Align"></button>
         <button class="button small icon-eye-close dim-controls" id="button-dim" aria-label="Dim While Reading" title="Dim While Reading"></button>
         <button class="button small icon-undo reset" id="button-reset" aria-label="Reset TelePrompter" title="Reset TelePrompter"></button>
         <button class="button small icon-text-width flip-x" id="button-flip-x" aria-label="Flip Text Horizontally" title="Flip Text Horizontally"></button>
@@ -90,7 +91,6 @@
           window.location.protocol + '//' + window.location.hostname + '/remote/socket.io/socket.io.js';
         tjs.parentNode.insertBefore(js, tjs);
       }(document, 'script', 'teleprompter-socket'));
-
     </script>
     <script src="/assets/js/remote.v120.js"></script>
     <script>

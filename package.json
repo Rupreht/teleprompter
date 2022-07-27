@@ -1,8 +1,8 @@
 {
   "name": "teleprompter",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Browser-based TelePrompter with Remote Control",
-  "homepage": "https://github.com/manifestinteractive/teleprompter",
+  "homepage": "https://github.com/Rupreht/teleprompter",
   "license": "MIT",
   "keywords": [
     "teleprompter"
@@ -20,10 +20,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/manifestinteractive/teleprompter.git"
+    "url": "git+https://github.com/Rupreht/teleprompter.git"
   },
   "bugs": {
-    "url": "https://github.com/manifestinteractive/teleprompter/issues"
+    "url": "https://github.com/Rupreht/teleprompter/issues"
   },
   "scripts": {
     "start": "pm2 start -w --name teleprompter --watch --log server.log -o ./server-stdout.log -e ./server-stderr.log server.js",

@@ -27,11 +27,12 @@ var TelePrompter = (function() {
     timerExp = 10,
     timerGA,
     timerURL,
-    version = 'v1.2.0';
+    version = 'v1.3.0';
 
   /* Default App Settings */
   var defaultConfig = {
     backgroundColor: '#141414',
+    hyphensControls: true,
     dimControls: true,
     flipX: false,
     flipY: false,
@@ -58,6 +59,7 @@ var TelePrompter = (function() {
     $elm.article = $('article');
     $elm.backgroundColor = $('#background-color');
     $elm.body = $('body');
+    $elm.buttonHyphensControls = $('.button.hyphens-controls');
     $elm.buttonDimControls = $('.button.dim-controls');
     $elm.buttonFlipX = $('.button.flip-x');
     $elm.buttonFlipY = $('.button.flip-y');
@@ -83,6 +85,7 @@ var TelePrompter = (function() {
 
     // Bind Events
     $elm.backgroundColor.on('change.teleprompter', handleBackgroundColor);
+    $elm.buttonHyphensControls.on('click.teleprompter', handleHyphens);
     $elm.buttonDimControls.on('click.teleprompter', handleDim);
     $elm.buttonFlipX.on('click.teleprompter', handleFlipX);
     $elm.buttonFlipY.on('click.teleprompter', handleFlipY);
@@ -185,6 +188,15 @@ var TelePrompter = (function() {
         localStorage.removeItem('teleprompter_background_color');
       }
 
+      // Update Hyphens Controls if Present, otherwise Set to Default since Not Present
+      if (urlParams.hyphensControls) {
+        config.hyphensControls = (decodeURIComponent(urlParams.hyphensControls) === 'true');
+        localStorage.setItem('teleprompter_hyphens_controls', config.hyphensControls);
+      } else {
+        config.hyphensControls = defaultConfig.hyphensControls;
+        localStorage.removeItem('teleprompter_hyphens_controls');
+      }
+
       // Update Dim Controls if Present, otherwise Set to Default since Not Present
       if (urlParams.dimControls) {
         config.dimControls = (decodeURIComponent(urlParams.dimControls) === 'true');
@@ -251,6 +263,15 @@ var TelePrompter = (function() {
       $elm.teleprompter.css('background-color', config.backgroundColor);
     } else {
       cleanTeleprompter();
+    }
+
+    if (localStorage.getItem('teleprompter_hyphens_controls')) {
+      config.hyphensControls = localStorage.getItem('teleprompter_hyphens_controls') === 'true';
+
+      // Update Indicator
+      if (config.hyphensControls) {
+        $elm.buttonHyphensControls.addClass('active');
+      }
     }
 
     if (localStorage.getItem('teleprompter_dim_controls')) {
@@ -552,6 +573,45 @@ var TelePrompter = (function() {
     // $elm.softwareUpdate.hide();
 
     modalOpen = false;
+  }
+
+  /**
+   * Handle Hyphens Text Align Justify
+   * @param {Object} evt
+   * @param {Boolean} skipUpdate
+   */
+  function handleHyphens(evt, skipUpdate) {
+    if (config.hyphensControls) {
+      config.hyphensControls = false;
+      $elm.buttonHyphensControls.removeClass('active');
+      $elm.teleprompter.removeClass('hyphens');
+    } else {
+      config.hyphensControls = true;
+      $elm.buttonHyphensControls.addClass('active');
+      $elm.teleprompter.addClass('hyphens');
+    }
+
+    localStorage.setItem('teleprompter_hyphens_controls', config.hyphensControls);
+
+    if (socket && remote && !skipUpdate) {
+      clearTimeout(emitTimeout);
+      emitTimeout = setTimeout(function(){
+        socket.emit('clientCommand', 'updateConfig', config);
+      }, timerExp);
+    }
+
+    if (debug) {
+      console.log('[TP]', 'Hyphens Control Changed:', config.hyphensControls);
+    }
+
+    clearTimeout(timerGA);
+    timerGA = setTimeout(function(){
+      gaEvent('TP', 'Hyphens Control Changed', config.hyphensControls);
+    }, timerExp);
+
+    // Update URL Params
+    clearTimeout(timerURL);
+    timerURL = setTimeout(updateURL, timerExp);
   }
 
   /**
@@ -1152,6 +1212,10 @@ var TelePrompter = (function() {
       gaEvent('IO', 'Remote Update');
     }, timerExp);
 
+    if (oldConfig.hyphensControls !== newConfig.hyphensControls) {
+      handleHyphens(null, true);
+    }
+
     if (oldConfig.dimControls !== newConfig.dimControls) {
       handleDim(null, true);
     }
@@ -1430,6 +1494,11 @@ var TelePrompter = (function() {
     setFontSize: function(size) {
       size = Math.min(100, Math.max(12, size));
       $elm.fontSize.slider('value', parseInt(size));
+      return this;
+    },
+    setHyphens: function(bool) {
+      config.hyphensControls = !bool;
+      handleHyphens();
       return this;
     },
     setDim: function(bool) {

@@ -83,6 +83,10 @@ TelePrompter.getConfig('fontSize')
 // Reset TelePrompter
 TelePrompter.reset()
 
+// Turn Hyphens On or Off
+TelePrompter.setHyphens(true)
+TelePrompter.setHyphens(false)
+
 // Turn Dim On or Off
 TelePrompter.setDim(true)
 TelePrompter.setDim(false)
